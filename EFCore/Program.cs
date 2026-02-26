@@ -6,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MvcMovieContext>(options =>
-    options.UseSqlite("Data Source=MvcMovie.db"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext") 
+                      ?? "Data Source=MvcMovie.db"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
